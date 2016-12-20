@@ -32,7 +32,6 @@
   "devDependencies": {
     "buble": "^0.15.1",
     "buble-loader": "^0.4.0",
-    "electron-prebuilt": "^0.37.3",
     "eslint": "^3.0.0",
     "eslint-config-uber-es2015": "^3.0.0",
     "eslint-config-uber-jsx": "^3.0.0",
@@ -49,7 +48,6 @@
     "tap-browser-color": "^0.1.2",
     "tape": "^4.5.1",
     "tape-catch": "^1.0.4",
-    "testron": "^1.2.0",
     "webpack": "^2.2.0-rc.3"
   },
   "peerDependencies": {

@@ -18,37 +18,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import React, {PropTypes, Component} from 'react';
-import ViewportMercator from 'viewport-mercator-project';
+import {autobind} from 'react-map-gl';
+import CanvasExample from './examples/canvas.react';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
-const propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  redraw: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired
-};
+import document from 'global/document';
+import window from 'global/window';
 
-export default class HTMLOverlay extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {width: window.innerWidth, height: window.innerHeight};
+    autobind(this);
+    window.addEventListener('resize', this._onWindowResize);
+  }
+
+  _onWindowResize() {
+    this.setState({width: window.innerWidth, height: window.innerHeight});
+  }
+
   render() {
-    const {width, height, isDragging} = this.props;
-    const style = {
-      position: 'absolute',
-      pointerEvents: 'none',
-      left: 0,
-      top: 0,
-      width,
-      height,
-      ...this.props.style
-    };
-    const mercator = ViewportMercator(this.props);
-    const {project, unproject} = mercator;
-
-    return (
-      <div ref="overlay" style={ style }>
-        { this.props.redraw({width, height, project, unproject, isDragging}) }
-      </div>
-    );
+    const {width, height} = this.state;
+    return <CanvasExample width={width} height={height}/>;
   }
 }
 
-HTMLOverlay.propTypes = propTypes;
+ReactDOM.render(<App/>, document.body.appendChild(document.createElement('div')));

@@ -180,7 +180,7 @@ const propTypes = {
 const defaultProps = {
   mapStyle: 'mapbox://styles/mapbox/light-v8',
   onChangeViewport: null,
-  mapboxApiAccessToken: config.DEFAULTS.MAPBOX_API_ACCESS_TOKEN,
+  mapboxApiAccessToken: getAccessToken(),
   preserveDrawingBuffer: false,
   attributionControl: true,
   ignoreEmptyFeatures: true,
@@ -189,6 +189,22 @@ const defaultProps = {
   altitude: 1.5,
   clickRadius: 15
 };
+
+// Try to get access token from URL, env, local storage or config
+function getAccessToken() {
+  const match = window.location.search.match(/access_token=([^&\/]*)/);
+  let accessToken = match && match[1];
+  if (!accessToken) {
+    accessToken =
+      process.env.MapboxAccessToken || process.env.MAPBOX_ACCESS_TOKEN; // eslint-disable-line
+  }
+  if (accessToken) {
+    window.localStorage.accessToken = accessToken;
+  } else {
+    accessToken = window.localStorage.accessToken;
+  }
+  return accessToken || config.DEFAULTS.MAPBOX_API_ACCESS_TOKEN;
+}
 
 export default class MapGL extends Component {
 
@@ -272,6 +288,7 @@ export default class MapGL extends Component {
     }
   }
 
+<<<<<<< 8cc151576827abf4b18621ae9d88686228d8890f:src/components/map.js
   // External apps can access map this way
   _getMap() {
     return this._map;
@@ -279,6 +296,10 @@ export default class MapGL extends Component {
 
   // Calculate a cursor style
   _getCursor() {
+=======
+  // Calculate a cursor style
+  _cursor() {
+>>>>>>> Remove mapbox Point dependency from map-interactions. Update eslint settings. Use static for propTypes.:src/map.react.js
     const isInteractive =
       this.props.onChangeViewport ||
       this.props.onClickFeature ||

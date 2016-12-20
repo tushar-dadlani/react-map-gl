@@ -98,8 +98,7 @@ const defaultProps = {
   onZoomEnd: noop
 };
 
-export default class Interactions extends Component {
-
+export default class MapInteractions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -210,6 +209,7 @@ export default class Interactions extends Component {
 
   /* eslint-disable complexity, max-statements */
   _onWheel(event) {
+    event.stopPropagation();
     event.preventDefault();
     let value = event.deltaY;
     // Firefox doubles the values on retina screens...
@@ -323,6 +323,6 @@ export default class Interactions extends Component {
   }
 }
 
-Interactions.displayName = 'Interactions';
-Interactions.propTypes = propTypes;
-Interactions.defaultProps = defaultProps;
+MapInteractions.displayName = 'MapInteractions';
+MapInteractions.propTypes = propTypes;
+MapInteractions.defaultProps = defaultProps;

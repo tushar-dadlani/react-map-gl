@@ -73,7 +73,6 @@ const defaultProps = {
 };
 
 export default class DraggablePointsOverlay extends Component {
-
   constructor(props) {
     super(props);
     this.state = {

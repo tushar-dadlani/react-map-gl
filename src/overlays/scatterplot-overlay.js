@@ -56,7 +56,6 @@ const defaultProps = {
 };
 
 export default class ScatterplotOverlay extends Component {
-
   componentDidMount() {
     this._redraw();
   }

@@ -23,6 +23,7 @@ import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import window from 'global/window';
 
+<<<<<<< b387bbc9ad5c046acde7893c7cfb55cada9b6c74:example/app.js
 import {autobind} from 'react-map-gl';
 import NotInteractiveExample from './examples/not-interactive-example';
 import ChoroplethOverlayExample from './examples/choropleth-overlay-example';
@@ -33,6 +34,18 @@ import RouteOverlayExample from './examples/route-overlay-example';
 import StyleDiffingExample from './examples/style-diffing-example';
 import TiltExample from './examples/tilt-example';
 import ClickExample from './examples/click-example';
+=======
+import NotInteractiveExample from './examples/not-interactive.react';
+import ChoroplethExample from './examples/choropleth.react';
+import CustomExample from './examples/custom.react';
+import GeodataCreator from './examples/geodata-creator.react';
+import ScatterplotExample from './examples/scatterplot.react';
+import RouteExample from './examples/route.react';
+import StyleDiffingExample from './examples/style-diffing.react';
+import TiltExample from './examples/tilt.react';
+import ClickExample from './examples/click.react';
+import CanvasExample from './examples/canvas.react';
+>>>>>>> canvas demo:example/main.js
 
 function getAccessToken() {
   const match = window.location.search.match(/access_token=([^&\/]*)/);
@@ -76,15 +89,22 @@ export default class App extends Component {
           width={ this.state.width - 30 }
           height={ 400 }
           mapboxApiAccessToken={ getAccessToken() }/>
+<<<<<<< b387bbc9ad5c046acde7893c7cfb55cada9b6c74:example/app.js
         <RouteOverlayExample { ...common }/>
         <ScatterplotOverlayExample { ...common }/>
         <ChoroplethOverlayExample { ...common }/>
         <CustomOverlayExample { ...common }/>
+=======
+        <CanvasExample { ...common }/>
+        <RouteExample { ...common }/>
+        <ScatterplotExample { ...common }/>
+        <ChoroplethExample { ...common }/>
+        <CustomExample { ...common }/>
+>>>>>>> canvas demo:example/main.js
         <GeodataCreator { ...common }/>
         <NotInteractiveExample { ...common }/>
         <StyleDiffingExample { ...common }/>
         <ClickExample {...common }/>
-        <StyleDiffingExample { ...common }/>
       </div>
     );
   }
