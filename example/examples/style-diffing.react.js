@@ -82,7 +82,7 @@ export default class StyleDiffingExample extends Component {
   componentWillMount() {
     const colors = ['red', 'green', 'blue'];
     let i = 0;
-    window.setInterval(function interval() {
+    this.animation = window.setInterval(function interval() {
       this.setState({
         mapStyle: buildStyle({
           stroke: colors[i % colors.length],
@@ -91,6 +91,12 @@ export default class StyleDiffingExample extends Component {
       });
       i = i + 1;
     }.bind(this), 2000);
+  }
+
+  componentWillUnmount() {
+    if (this.animation) {
+      window.clearInterval(this.animation);
+    }
   }
 
   @autobind

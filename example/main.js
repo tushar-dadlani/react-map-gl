@@ -56,11 +56,15 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     window.addEventListener('resize', this._onWindowResize);
-    this.state = {width: window.innerWidth};
+    this.state = {width: window.innerWidth, displayMap: true};
   }
 
   @autobind _onWindowResize() {
     this.setState({width: window.innerWidth});
+  }
+
+  @autobind _toggleDisplay() {
+    this.setState({displayMap: !this.state.displayMap});
   }
 
   render() {
@@ -70,8 +74,15 @@ export default class App extends Component {
       style: {float: 'left'},
       mapboxApiAccessToken: getAccessToken()
     };
+    const toggle = <button onClick={this._toggleDisplay} >TOGGLE</button>;
+
+    if (!this.state.displayMap) {
+      return (<div>{toggle}</div>)
+    }
+
     return (
       <div>
+        {toggle}
         <TiltExample
           width={ this.state.width - 30 }
           height={ 400 }
